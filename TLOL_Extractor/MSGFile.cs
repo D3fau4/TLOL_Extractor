@@ -84,7 +84,7 @@ namespace TLOL_Extractor
                     //char[] text = reader.ReadChars(pointer - lastOffset);
                     List<char> characters = new List<char>();
                     int n = 0;
-                    while(n < 2)
+                    while (n < 2)
                     {
                         char c = reader.ReadChar();
                         if (c == '\0')
@@ -121,7 +121,7 @@ namespace TLOL_Extractor
             string path = this.Path;
             string dataPath = path.Replace(".msg", ".data"),
                 textPath = path.Replace(".msg", ".text");
-            
+
             BinaryWriter dataWriter = new BinaryWriter(File.Create(dataPath));
             /************ SAVE TCRC ************/
             this.WriteTCRC(dataWriter);
@@ -195,21 +195,25 @@ namespace TLOL_Extractor
                 msgFile.TCRC_BlockSize = newPointers * 8;
                 // FIN JRH 
                 int n = 0;
+                string meme = "";
                 for (int i = 0; i < newPointers; i++)
                 {
                     var txt = charArrays[i];
                     int key = n + 16 + msgFile.TCRC_BlockSize;
+                    meme += key.ToString("x") + "\n";
                     msgFile.Texts.Add(key, txt);
                     msgFile.CRCs.Add(key, new CRC()
-                        {
-                            Checksum = oldPointers[i].Checksum,
-                            Pointer = n
-                        });
+                    {
+                        Checksum = oldPointers[i].Checksum,
+                        Pointer = n
+                    });
                     // JRH 2018-08-17
                     //n += txt.Length;
                     n += txt.Length + txt.Count(c => c == 'ñ' || c == 'á' || c == 'é' || c == 'í' || c == 'ó' || c == 'ú' || c == 'Ñ' || c == 'Á' || c == 'É' || c == 'Í' || c == 'Ó' || c == 'Ú' || c == '¿' || c == '¡');
+                    n += txt.Count(c => c == '仝') * 2;
                     // FIN JRH 
                 }
+                File.WriteAllText("mod.txt", meme);
                 msgFile.TEXT_BlockSize = n;
                 textReader.Close();
                 msgFile.HasTEXT = true;
