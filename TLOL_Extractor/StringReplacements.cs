@@ -11,7 +11,7 @@ namespace TLOL_Extractor
         public static string ReplaceSpanishChars(this string s)
         {
             string aux = s;
-            aux = aux.Replace('ñ', 'n')
+            /*aux = aux.Replace('ñ', 'n')
             .Replace('á', 'a')
             .Replace('é', 'e')
             .Replace('í', 'i')
@@ -24,7 +24,7 @@ namespace TLOL_Extractor
             .Replace('Ó', 'O')
             .Replace('Ú', 'U')
             .Replace('¿', ' ')
-            .Replace('¡', ' ');
+            .Replace('¡', ' ');*/
             return aux;
         }
     }

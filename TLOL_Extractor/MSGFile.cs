@@ -195,12 +195,10 @@ namespace TLOL_Extractor
                 msgFile.TCRC_BlockSize = newPointers * 8;
                 // FIN JRH 
                 int n = 0;
-                string meme = "";
                 for (int i = 0; i < newPointers; i++)
                 {
                     var txt = charArrays[i];
                     int key = n + 16 + msgFile.TCRC_BlockSize;
-                    meme += key.ToString("x") + "\n";
                     msgFile.Texts.Add(key, txt);
                     msgFile.CRCs.Add(key, new CRC()
                     {
@@ -216,7 +214,7 @@ namespace TLOL_Extractor
                     n += txt.Count(c => c == '仝') * 2;
                     // FIN JRH 
                 }
-                File.WriteAllText("mod.txt", meme);
+
                 msgFile.TEXT_BlockSize = n;
                 textReader.Close();
                 msgFile.HasTEXT = true;
