@@ -110,7 +110,9 @@ namespace TLOL_Extractor
 
                 ushort length = 0;
                 arrNamFile.Texts.Add(texts[0].ToCharArray().Concat(new char[] { '\0' }).ToArray());
-                length += (ushort)(texts[0].Length + texts[0].Count(c => c == 'ñ' || c == 'á' || c == 'é' || c == 'í' || c == 'ó' || c == 'ú' || c == 'Ñ' || c == 'Á' || c == 'É' || c == 'Í' || c == 'Ó' || c == 'Ú' || c == '¿' || c == '¡') + 1);
+                length += (ushort)(texts[0].Length + texts[0].Count(c => c == 'ñ' || c == 'á' || c == 'é' || c == 'í' || c == 'ó' || c == 'ú' ||
+                    c == 'Ñ' || c == 'Á' || c == 'É' || c == 'Í' || c == 'Ó' || c == 'Ú' || c == '¿' || c == '¡' || c == 'ä' || c == 'ë'
+                    || c == 'ï' || c == 'ö' || c == 'ü' || c == 'Ä' || c == 'Ë' || c == 'Ï' || c == 'Ö' || c == 'Ü' || c == '«' || c == '»') + 1);
                 foreach (var txt in texts.Skip(1))
                 {
                     if (txt.Contains('<'))
@@ -131,7 +133,9 @@ namespace TLOL_Extractor
                         if (txt != texts.Last())
                             arrNamFile.Pointers.Add(length);
                         arrNamFile.Texts.Add(txt.ToCharArray().Concat(new char[] { '\0' }).ToArray());
-                        length += (ushort)(txt.Length + txt.Count(c => c == 'ñ' || c == 'á' || c == 'é' || c == 'í' || c == 'ó' || c == 'ú' || c == 'Ñ' || c == 'Á' || c == 'É' || c == 'Í' || c == 'Ó' || c == 'Ú' || c == '¿' || c == '¡') + 1);
+                        length += (ushort)(txt.Length + txt.Count(c => c == 'ñ' || c == 'á' || c == 'é' || c == 'í' || c == 'ó' || c == 'ú' ||
+                            c == 'Ñ' || c == 'Á' || c == 'É' || c == 'Í' || c == 'Ó' || c == 'Ú' || c == '¿' || c == '¡' || c == 'ä' || c == 'ë'
+                            || c == 'ï' || c == 'ö' || c == 'ü' || c == 'Ä' || c == 'Ë' || c == 'Ï' || c == 'Ö' || c == 'Ü' || c == '«' || c == '»') + 1);
                     }
                 }
                 //var charArrays = texts.Select(s => s.ToCharArray().Concat(new char[] { '\0' }).ToArray())
